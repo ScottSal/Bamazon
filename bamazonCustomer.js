@@ -5,7 +5,7 @@ var Table = require('cli-table');
 
 var table = new Table({
     head: ["ID", "Product", "Department", "Price","Stock Quantity"]
-  , colWidths: [5, 25, 15, 8, 18]
+  , colWidths: [5, 25, 15, 10, 18]
 });
 
 var connection = mysql.createConnection({
@@ -26,7 +26,7 @@ connection.connect(function(err) {
     if (err) {
         throw err;
     } else {
-        console.log("connected as id " + connection.threadId + "\n");
+        console.log("Welcome to Bamazon! Have fun shopping!");
         
         connection.query("SELECT * FROM products", function(err, res) {
             for (var i=0; i<res.length; i++){
