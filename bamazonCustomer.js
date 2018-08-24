@@ -5,7 +5,7 @@ var Table = require('cli-table');
 
 var table = new Table({
     head: ["ID", "Product", "Department", "Price","Stock Quantity"]
-  , colWidths: [5, 20, 15, 8, 18]
+  , colWidths: [5, 25, 15, 8, 18]
 });
 
 var connection = mysql.createConnection({
@@ -85,115 +85,11 @@ function userBuy() {
                         console.log("stock has been updated");
 
                         console.log("You owe $" + userTotal);
+
+                        console.log("Thank you for shopping at Bamazon! Have a wonderful day!")
                     });
                 }
                 connection.end();
             });
         });
-};
-
-// var mysql = require("mysql");
-// var prompt = require("prompt");
-// var Table = require("cli-table");
-// var inquirer = require("inquirer");
-
-// var connection = mysql.createConnection({
-//     user: "root",
-//     password: "process.env.DBPASSWORD",
-//     host: "localhost",
-//     port: 3306,
-//     database: "Bamazon_DB"
-// });
-
-// var db;
-
-// function displayAll(){
-//     db = {};
-//     connection.query("SELECT * FROM Products", function(err, res) {
-//         if (err)
-//     ;
-
-// connection.connect(function(err) {
-//     if (err) {
-//         throw err;
-//     };
-//     var inventory = new Table({ head: ["ID", "Product Name", "Department Name", "Price", "Quantity in Stock"]});
-//     results.forEach(function(value, index, array) {
-//         var idNum =value.id;
-//         var product = value.product_name;
-//         var dept = value.department_name;
-//         var price = value.price;
-//         var stock = value.stock_quantity;
-
-//         var newLine = {};
-//         newLine[idNum] = [product, dept, price, stock];
-//         db[idNum] = value;
-//         inventory.push(newLine);
-//     });
-//     console.log(inventory.toString());
-// });
-// },
-
-// function changeInventory(id, currentQuantity, addOrSubtract) {
-//     var newQuantity = currentQuantity + addOrSubtract;
-//     var updateText = "UPDATE Products\
-//         SET stock_quantity = ?\
-//         WHERE id = ?";
-//     connection.query(updateText, [newQuantity, id], function(err, res) {
-//         if (err) {
-//             throw err;
-//         };
-//     })
-// },
-
-// function purchase() {
-//     setTimeout(function(){purchaseGo()}, 3000);
-//     function purchaseGo() {
-//         prompt.start();
-//         console.log("If you would like to purchase a product, please enter the ID number of the product, and quantity you would like to buy.")
-//         prompt.get(["ID", "Quantity"], function(err, res) {
-//             if (err) {
-//                 throw err;
-//             };
-//             var itemID = Number(results.ID);
-//             var purchaseItem = db[itemID];
-//             var totalPrice = purchaseItem.price * results.Quantity;
-//             var changeQuantity = results.Quantity * -1;
-
-//             if (purchaseItem.stock_quantity >= results.Quantity) {
-//                 changeInventory(itemID, purchaseItem.stock_quantity, changeQuantity);
-//                 console.log("Your purchase; " + purchaseItem.product_name);
-//                 console.log("Quantity: " + results.Quantity);
-//                 console.log("Total price: $" + totalPrice);
-//             }
-//             else {
-//                 console.log("Purchase error");
-//             };
-//             morePlease();
-//         });
-//     }
-// },
-
-// function morePlease() {
-//     var questions = [{
-//         name: "again",
-//         message: "Would you like to make another purchase?",
-//         type: "confirm"
-//     }]
-
-//     inquirer.prompt(questions).then(function(answers) {
-//         if (answers.again) {
-//             displayAll();
-//             purchase();
-//         }
-//         else {
-//             console.log("Thanks for shopping at Bamazon! Goodbye!");
-//             return;
-//         }
-//     });
-// },
-
-// console.log("Welcome to Bamazon! Here is our product catalog to choose from:"));
-// displayAll();
-// purchase();
-// }
+    };
